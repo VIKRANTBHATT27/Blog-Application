@@ -94,7 +94,14 @@ function PostForm({ post }) {
                subcription.unsubscribe();
           }
 
-     }, [ watch, slugTransform ])
+     }, [ watch, slugTransform ]);
+
+     const [ imageUrl, setImageUrl ] = useState(null);
+
+     useEffect(() => {
+          appwriteService.getImageFile(post.featuredImage).then((url) => setImageUrl(url.toString()));
+          console.log(imageUrl);
+     }, [post?.featuredImage]);
 
   return (
      <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
@@ -135,7 +142,7 @@ function PostForm({ post }) {
                {post && (
                     <div className="w-full mb-4">
                          <img
-                              src={`${appwriteService.getImageFile(post.featuredImage)}&mode=admin`}
+                              src={imageUrl}
                               alt={post.title}
                               className="rounded-lg"
                          />

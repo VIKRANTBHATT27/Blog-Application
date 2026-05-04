@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react";
 
 const initialState = {        //initial state of the user like userData
      status: false,      //indicating user is not logged in 

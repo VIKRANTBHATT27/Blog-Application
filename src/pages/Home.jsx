@@ -5,7 +5,7 @@ import { Container, PostCard } from '../components';
 import { useSelector } from 'react-redux';
 
 function Home() {
-     const [ allPosts, setAllPosts ] = useState([]);
+     const [allPosts, setAllPosts] = useState([]);
      const authStatus = useSelector(state => state.auth.status);
 
      useEffect(() => {
@@ -13,10 +13,11 @@ function Home() {
                appwriteService.getAllPost().then((allPosts) => allPosts ? setAllPosts(allPosts.documents) : []);
           }
      }, []);
-          
+
      if (allPosts === null || allPosts.length === 0) {
           return (
-               <div className="w-full py-8 mt-4 text-center">
+               <div className="w-full py-8 mt-4 text-center min-h-[80%] flex items-center justify-center">
+          
                     <Container>
                          <div className="flex flex-wrap">
                               <div className="p-2 w-full">
@@ -34,9 +35,9 @@ function Home() {
                     <div className="flex flex-wrap">
 
                          {allPosts.map((post) => (
-                                   <div key={post.$id} className="p-2 w-1/4">
-                                        <PostCard {...post} />
-                                   </div>
+                              <div key={post.$id} className="p-2 w-1/4">
+                                   <PostCard {...post} />
+                              </div>
                          ))}
 
                     </div>
@@ -44,9 +45,6 @@ function Home() {
           </div>
      )
 
-     return (
-    <div>Home</div>
-  )
 }
 
 export default Home

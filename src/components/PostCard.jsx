@@ -4,7 +4,15 @@ import { Link, useParams } from "react-router-dom";
 
 function PostCard({ $id, featuredImage, title }) {
 
+  const [imageUrl, setImageUrl] = useState(null);
 
+  useEffect(() => {
+    appwriteService.getImageFile(featuredImage).then((url) => setImageUrl(url));
+    console.log(imageUrl);
+  }, [])
+
+  console.log("PostCard render:", { title, featuredImage, imageUrl });
+  console.log(`${imageUrl}&mode=admin`);
 
   return (
     <Link to={`/post/${$id}`}>
@@ -12,7 +20,7 @@ function PostCard({ $id, featuredImage, title }) {
 
         <div className='w-full justify-between mb-4'>
           <img
-            src={`${appwriteService.getImageFile(featuredImage)}&mode=admin`}
+            src={`${imageUrl}`}
             alt={title}
             className="rounded-xl"
           />

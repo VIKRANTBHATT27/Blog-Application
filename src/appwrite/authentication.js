@@ -86,12 +86,10 @@ export class AuthService {              //creating a class structure
                return result;
           } 
           catch (error) {
-               console.log();
-               // console.log("Appwrite-authentication-service :: getCurrentUser :: error ", error);
+               console.log(error);
+               console.log("Appwrite-authentication-service :: getCurrentUser :: error ", error);
                return false;
           }
-
-          return null;
      }
      
      //password recovery

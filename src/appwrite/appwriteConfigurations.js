@@ -1,7 +1,7 @@
 import config from "../config/config.js";
 import { Client, Databases, Storage, Query, ID } from "appwrite";
 
-export class Services{
+export class Services {
      client = new Client();
      DB;
      bucket;
@@ -10,7 +10,7 @@ export class Services{
           this.client
                .setEndpoint(config.appwriteUrlApiEndpoint)
                .setProject(config.appwriteProjectId);
-          
+
           this.DB = new Databases(this.client);        //already call constructor
           this.bucket = new Storage(this.client);      //& passed this.client to it
      }
@@ -40,7 +40,7 @@ export class Services{
           }
      }
 
-     async updatePost( slug, {title, content, featuredImage, status, userId} ) {
+     async updatePost(slug, { title, content, featuredImage, status, userId }) {
           try {
                const updated = await this.DB.updateDocument({
                     databaseId: config.appwriteDatabaseId,
@@ -157,17 +157,19 @@ export class Services{
           }
      }
 
-     getImageFile(imageFileId) {
-          const result = this.bucket.getFilePreview({
+     async getImageFile(imageFileId) {
+          if (!imageFileId) throw new Error("imageFileId is required");
+
+          const result = this.bucket.getFileView({
                bucketId: config.appwriteBucketId,
-               fileId: imageFileId, 
+               fileId: imageFileId
           });
           //output filed, bgImage, token => from docs
 
-          console.log();
+          // console.log();
           console.log(result);
 
-          return result ;
+          return result;
      }
 };
 

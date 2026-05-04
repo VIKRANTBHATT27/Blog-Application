@@ -10,7 +10,7 @@ function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [ error, setError ] = useState();
+  const [error, setError] = useState();
   const { register, handleSubmit } = useForm();
 
   const signUpFunction = async (data) => {
@@ -25,7 +25,7 @@ function SignUp() {
       if (account) {
         const userData = await authService.getCurrentUser();
 
-        if (userData) dispatch( storeLogIn(userData) );
+        if (userData) dispatch(storeLogIn(userData));
         navigate("/");
       }
     } catch (error) {
@@ -49,20 +49,20 @@ function SignUp() {
 
         <p className="mt-2 text-center text-base text-black/60">
           Already have an account?&nbsp;
-          <Link 
+          <Link
             to="/login"
             className="font-medium text-primary transition-all duration-200 hover:underline"
           >
-              Sign In
+            Sign In
           </Link>
         </p>
 
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
-        <form onSubmit={ handleSubmit(signUpFunction) }>
+        <form onSubmit={handleSubmit(signUpFunction)}>
           <div className='space-y-5'>
-            
-            <Input 
+
+            <Input
               label="Full Name: "
               type="text"
               placeholder="Enter your name"
@@ -72,7 +72,7 @@ function SignUp() {
                 required: true
               })}
             />
-            <Input 
+            <Input
               label="Email: "
               placeholder="Enter your name"
               type="email"
@@ -81,26 +81,23 @@ function SignUp() {
               {...register("email", {
                 required: true,
                 validate: {
-                  matchPattern: (value) => 
+                  matchPattern: (value) =>
                     /^(?:(?:[\w`~!#$%^&*\-=+;:{}'|,?\/]+(?:(?:\.(?:"(?:\\?[\w`~!#$%^&*\-=+;:{}'|,?\/\.()<>\[\] @]|\\"|\\\\)*"|[\w`~!#$%^&*\-=+;:{}'|,?\/]+))*\.[\w`~!#$%^&*\-=+;:{}'|,?\/]+)?)|(?:"(?:\\?[\w`~!#$%^&*\-=+;:{}'|,?\/\.()<>\[\] @]|\\"|\\\\)+"))@(?:[a-zA-Z\d\-]+(?:\.[a-zA-Z\d\-]+)*|\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])$/
-                  .test(value) || "Email address must be a valid address"
+                      .test(value) || "Email address must be a valid address"
                 }
-              })}
-              />
+              }
+              )}
+            />
 
-            <Input 
+            <Input
               label="Password: "
               type="password"
               placeholder="password"
               autoComplete="current-password"
-              
+
               {...register("password", {
                 required: true,
-                validate: {
-                  matchPattern: (value) => 
-                    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
-                  .test(value) || "Password contains invalid characters"
-                }
+                
               })}
             />
 
