@@ -71,12 +71,12 @@ function Post() {
                     </div>
 
                     <div className="max-w-4xl absolute top-24 left-36 flex justify-center">
-                         <h1 className="text-4xl font-bold flex justify-center w-4xl">
+                         <h1 className="text-3xl font-bold flex justify-center w-4xl">
                               <u>{post.title}</u>
                          </h1>
                     </div>
 
-                    <div className="browser-css max-w-4xl text-justify mt-16">
+                    <div className="max-w-3xl text-justify mt-16 text-3xl">
                          {parse(post.content)}
                     </div>
                </Container>

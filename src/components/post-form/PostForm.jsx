@@ -99,7 +99,9 @@ function PostForm({ post }) {
      const [ imageUrl, setImageUrl ] = useState(null);
 
      useEffect(() => {
-          appwriteService.getImageFile(post.featuredImage).then((url) => setImageUrl(url.toString()));
+          if (!post?.featuredImage) return;
+          
+          appwriteService.getImageFile(post?.featuredImage).then((url) => setImageUrl(url.toString()));
           console.log(imageUrl);
      }, [post?.featuredImage]);
 

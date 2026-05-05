@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { Services as appwriteService } from '../appwrite/appwriteConfigurations';
 import appwriteService from "../appwrite/appwriteConfigurations";
 import { Container, PostCard } from '../components';
 import { useSelector } from 'react-redux';
